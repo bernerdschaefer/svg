@@ -76,19 +76,43 @@ describe SVG::Canvas do
     end
   end
 
-  context "with no current scope" do
-    describe "#scale" do
-      it "delegates to the root node" do
-        canvas.root.should_receive(:scale).with(100, 100)
-        canvas.scale(100, 100)
+  describe "#current_scope" do
+    context "with no scope" do
+      it "returns the root" do
+        canvas.current_scope.should eq canvas.root
       end
     end
 
-    describe "#translate" do
-      it "delegates to the root node" do
-        canvas.root.should_receive(:translate).with(100, 100)
-        canvas.translate(100, 100)
+    context "with a scope" do
+      let(:scope) { SVG::Node.new "path" }
+
+      before do
+        canvas.scope << scope
       end
+
+      it "returns the current scope" do
+        canvas.current_scope.should eq scope
+      end
+    end
+  end
+
+  describe "#scale" do
+    let(:scope) { SVG::Node.new "path" }
+
+    it "delegates to the current scope" do
+      canvas.stub(:current_scope => scope)
+      scope.should_receive(:scale).with(100, 100)
+      canvas.scale(100, 100)
+    end
+  end
+
+  describe "#translate" do
+    let(:scope) { SVG::Node.new "path" }
+
+    it "delegates to the current scope" do
+      canvas.stub(:current_scope => scope)
+      scope.should_receive(:translate).with(100, 100)
+      canvas.translate(100, 100)
     end
   end
 

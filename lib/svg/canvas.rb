@@ -44,6 +44,16 @@ module SVG
       end
     end
 
+    # @return [SVG::Node] the current scope, or the root
+    def current_scope
+      scope.last || root
+    end
+
+    # @return [Array] a stack of nodes on the canvas
+    def scope
+      @scope ||= []
+    end
+
     # @return [XML::Node] the root node for this canvas
     def root
       @root ||= SVG::Node.new("svg").tap do |root|
@@ -52,10 +62,10 @@ module SVG
       end
     end
 
-    # Delegates missing method calls to the root SVG node.
+    # Delegates missing method calls to the current scope.
     def method_missing(method, *args)
-      if root.respond_to? method
-        root.send method, *args
+      if current_scope.respond_to? method
+        current_scope.send method, *args
       else
         super
       end
