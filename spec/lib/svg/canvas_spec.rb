@@ -26,6 +26,12 @@ describe SVG::Canvas do
     end
   end
 
+  describe "#to_s" do
+    it "outputs the SVG document" do
+      canvas.to_s.should eq canvas.raw.to_s
+    end
+  end
+
   describe "#height=" do
     it "sets the SVG element's height" do
       canvas.height = 100.0

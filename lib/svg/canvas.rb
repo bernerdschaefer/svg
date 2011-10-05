@@ -38,6 +38,11 @@ module SVG
       root["width"]
     end
 
+    # @return [String] the canvas as XML
+    def to_s
+      raw.to_s
+    end
+
     # Sets the SVG canvas width
     #
     # @param width the SVG canvas width
