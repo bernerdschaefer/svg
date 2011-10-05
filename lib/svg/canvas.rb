@@ -1,6 +1,13 @@
 module SVG
   class Canvas
 
+    # @param width the canvas width
+    # @param height the canvas height
+    def initialize(width, height)
+      self.width = width
+      self.height = height
+    end
+
     # Scales the canvas based on the provided x and y scale factors.
     #
     # See: http://www.w3.org/TR/SVG/coords.html#TransformAttribute
@@ -28,7 +35,7 @@ module SVG
       @transform ||= Transform.new
     end
 
-    # @return [String, nil] the SVG canvas height or nil
+    # @return [String] the SVG canvas height
     def height
       root["height"]
     end
@@ -40,7 +47,7 @@ module SVG
       root["height"] = height.to_s
     end
 
-    # @return [String, nil] the SVG canvas width or nil
+    # @return [String] the SVG canvas width
     def width
       root["width"]
     end

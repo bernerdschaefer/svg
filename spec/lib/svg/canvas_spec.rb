@@ -2,7 +2,17 @@ require "spec_helper"
 
 describe SVG::Canvas do
 
-  let(:canvas) { SVG::Canvas.new }
+  let(:canvas) { SVG::Canvas.new(10, 10) }
+
+  describe "#initialize" do
+    it "sets the canvas width" do
+      SVG::Canvas.new(100, 200).width.should eq "100"
+    end
+
+    it "sets the canvas height" do
+      SVG::Canvas.new(100, 200).height.should eq "200"
+    end
+  end
 
   describe "#raw" do
     it "returns the raw libxml document" do
