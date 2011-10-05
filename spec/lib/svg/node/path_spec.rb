@@ -72,6 +72,24 @@ describe SVG::Node::Path do
     end
   end
 
+  %w(smooth_curve_to s).each do |curve_command|
+    describe "##{curve_command}" do
+      it "appends the path data" do
+        path.should_receive(:append_path_data).with("s", 10, 10, 100, 100)
+        path.send curve_command, 10, 10, 100, 100
+      end
+    end
+  end
+
+  %w(smooth_curve_to! S).each do |curve_command|
+    describe "##{curve_command}" do
+      it "appends the path data" do
+        path.should_receive(:append_path_data).with("S", 10, 10, 100, 100)
+        path.send curve_command, 10, 10, 100, 100
+      end
+    end
+  end
+
   context "after a sequence of commands" do
     before do
       path.move_to 10, 10

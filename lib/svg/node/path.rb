@@ -88,6 +88,22 @@ module SVG
       end
       alias M move_to!
 
+      # Draws a smooth Bézier curve. See
+      # http://www.w3.org/TR/SVG/paths.html#PathDataCubicBezierCommands for
+      # details. Equivalent to "s"
+      def smooth_curve_to(x2, y2, x, y)
+        append_path_data "s", x2, y2, x, y
+      end
+      alias s smooth_curve_to
+
+      # Draws a smooth Bézier curve. See
+      # http://www.w3.org/TR/SVG/paths.html#PathDataCubicBezierCommands for
+      # details. Equivalent to "S"
+      def smooth_curve_to!(x2, y2, x, y)
+        append_path_data "S", x2, y2, x, y
+      end
+      alias S smooth_curve_to!
+
       private
 
       def append_path_data(*data)
