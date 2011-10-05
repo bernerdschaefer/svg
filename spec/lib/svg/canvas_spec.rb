@@ -116,4 +116,29 @@ describe SVG::Canvas do
     end
   end
 
+  describe "#begin_path" do
+    it "pushes an SVG::Node::Path onto the stack" do
+      canvas.begin_path
+      canvas.current_scope.should be_an_instance_of SVG::Node::Path
+    end
+
+    it "returns the new path" do
+      canvas.begin_path.should eq canvas.current_scope
+    end
+  end
+
+  describe "#end_path" do
+    let!(:path) { canvas.begin_path }
+
+    it "removes the path from the stack" do
+      canvas.end_path
+      canvas.current_scope.should eq canvas.root
+    end
+
+    it "adds the path to the document" do
+      canvas.end_path
+      canvas.root.children.should include path
+    end
+  end
+
 end

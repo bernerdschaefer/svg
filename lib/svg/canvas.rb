@@ -44,6 +44,23 @@ module SVG
       end
     end
 
+    # Adds a new path onto the scope stack.
+    #
+    # @return [SVG::Node::Path] the new path node
+    def begin_path
+      SVG::Node::Path.new.tap do |path|
+        scope << path
+      end
+    end
+
+    # Removes the current path from the end of the stack, and appends the path
+    # node to the previous scope.
+    def end_path
+      scope.pop.tap do |path|
+        current_scope << path
+      end
+    end
+
     # @return [SVG::Node] the current scope, or the root
     def current_scope
       scope.last || root
