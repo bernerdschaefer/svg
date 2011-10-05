@@ -6,4 +6,5 @@ end
 
 require 'svg/canvas'
 require 'svg/node'
+require 'svg/node/path'
 require 'svg/transform'
