@@ -70,4 +70,20 @@ describe SVG::Canvas do
     end
   end
 
+  describe "#translate" do
+    context "with only x position" do
+      it "sets the SVG element's transform to translate" do
+        canvas.translate 100
+        canvas.root["transform"].should eq "translate(100, 0)"
+      end
+    end
+
+    context "with x and y positions" do
+      it "sets the SVG element's transform to translate" do
+        canvas.translate 100, -4
+        canvas.root["transform"].should eq "translate(100, -4)"
+      end
+    end
+  end
+
 end

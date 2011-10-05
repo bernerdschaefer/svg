@@ -11,6 +11,16 @@ module SVG
       root["transform"] = "scale(#{xscale}, #{yscale})"
     end
 
+    # Translates the document based on the provided x and y positions.
+    #
+    # See: http://www.w3.org/TR/SVG/coords.html#TransformAttribute
+    #
+    # @param xscale the x position
+    # @param yscale the y position
+    def translate(x, y = 0)
+      root["transform"] = "translate(#{x}, #{y})"
+    end
+
     # @return [String, nil] the SVG canvas height or nil
     def height
       root["height"]
