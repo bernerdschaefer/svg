@@ -36,6 +36,12 @@ describe SVG::Canvas do
     end
   end
 
+  describe "#root" do
+    it "is an SVG::Node" do
+      canvas.root.should be_an_instance_of SVG::Node
+    end
+  end
+
   describe "#to_s" do
     it "outputs the SVG document" do
       canvas.to_s.should eq canvas.raw.to_s
@@ -70,34 +76,18 @@ describe SVG::Canvas do
     end
   end
 
-  describe "#scale" do
-    context "with only xscale" do
-      it "sets the SVG element's transform to scale" do
-        canvas.scale 1
-        canvas.root["transform"].should eq "scale(1, 1)"
+  context "with no current scope" do
+    describe "#scale" do
+      it "delegates to the root node" do
+        canvas.root.should_receive(:scale).with(100, 100)
+        canvas.scale(100, 100)
       end
     end
 
-    context "with xscale and yscale" do
-      it "sets the SVG element's transform to scale" do
-        canvas.scale 1, -1
-        canvas.root["transform"].should eq "scale(1, -1)"
-      end
-    end
-  end
-
-  describe "#translate" do
-    context "with only x position" do
-      it "sets the SVG element's transform to translate" do
-        canvas.translate 100
-        canvas.root["transform"].should eq "translate(100, 0)"
-      end
-    end
-
-    context "with x and y positions" do
-      it "sets the SVG element's transform to translate" do
-        canvas.translate 100, -4
-        canvas.root["transform"].should eq "translate(100, -4)"
+    describe "#translate" do
+      it "delegates to the root node" do
+        canvas.root.should_receive(:translate).with(100, 100)
+        canvas.translate(100, 100)
       end
     end
   end
