@@ -1,6 +1,18 @@
 module SVG
   class Canvas
 
+    # @return [String, nil] the SVG canvas height or nil
+    def height
+      root["height"]
+    end
+
+    # Sets the SVG canvas height
+    #
+    # @param height the SVG canvas height
+    def height=(height)
+      root["height"] = height.to_s
+    end
+
     # @return [String, nil] the SVG canvas width or nil
     def width
       root["width"]

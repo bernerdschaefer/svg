@@ -26,6 +26,20 @@ describe SVG::Canvas do
     end
   end
 
+  describe "#height=" do
+    it "sets the SVG element's height" do
+      canvas.height = 100.0
+      canvas.root["height"].should eq "100.0"
+    end
+  end
+
+  describe "#height" do
+    it "returns the SVG element's height" do
+      canvas.height = 300.0
+      canvas.height.should eq "300.0"
+    end
+  end
+
   describe "#width=" do
     it "sets the SVG element's width" do
       canvas.width = 100.0
