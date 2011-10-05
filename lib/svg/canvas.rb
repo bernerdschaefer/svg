@@ -8,17 +8,24 @@ module SVG
     # @param xscale the x-axis scale factor
     # @param yscale the y-axis scale factor
     def scale(xscale, yscale = xscale)
-      root["transform"] = "scale(#{xscale}, #{yscale})"
+      transform.scale(xscale, yscale)
+      root["transform"] = transform.to_s
     end
 
     # Translates the document based on the provided x and y positions.
     #
     # See: http://www.w3.org/TR/SVG/coords.html#TransformAttribute
     #
-    # @param xscale the x position
-    # @param yscale the y position
+    # @param x the x position
+    # @param y the y position
     def translate(x, y = 0)
-      root["transform"] = "translate(#{x}, #{y})"
+      transform.translate(x, y)
+      root["transform"] = transform.to_s
+    end
+
+    # @return [SVG::Transform] the current transformation
+    def transform
+      @transform ||= Transform.new
     end
 
     # @return [String, nil] the SVG canvas height or nil

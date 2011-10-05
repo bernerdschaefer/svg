@@ -5,3 +5,4 @@ module SVG
 end
 
 require 'svg/canvas'
+require 'svg/transform'
