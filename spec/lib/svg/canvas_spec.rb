@@ -54,4 +54,20 @@ describe SVG::Canvas do
     end
   end
 
+  describe "#scale" do
+    context "with only xscale" do
+      it "sets the SVG element's transform to scale" do
+        canvas.scale 1
+        canvas.root["transform"].should eq "scale(1, 1)"
+      end
+    end
+
+    context "with xscale and yscale" do
+      it "sets the SVG element's transform to scale" do
+        canvas.scale 1, -1
+        canvas.root["transform"].should eq "scale(1, -1)"
+      end
+    end
+  end
+
 end

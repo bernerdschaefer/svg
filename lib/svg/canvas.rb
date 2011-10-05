@@ -1,6 +1,16 @@
 module SVG
   class Canvas
 
+    # Scales the canvas based on the provided x and y scale factors.
+    #
+    # See: http://www.w3.org/TR/SVG/coords.html#TransformAttribute
+    #
+    # @param xscale the x-axis scale factor
+    # @param yscale the y-axis scale factor
+    def scale(xscale, yscale = xscale)
+      root["transform"] = "scale(#{xscale}, #{yscale})"
+    end
+
     # @return [String, nil] the SVG canvas height or nil
     def height
       root["height"]
