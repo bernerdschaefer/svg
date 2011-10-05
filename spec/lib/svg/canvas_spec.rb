@@ -19,18 +19,18 @@ describe SVG::Canvas do
       canvas.raw.should be_an_instance_of LibXML::XML::Document
     end
 
-    its "root element is <svg>" do
+    its "root" do
       canvas.raw.root.name.should eq "svg"
     end
 
     describe "<svg>" do
       let(:root) { canvas.raw.root }
 
-      its "namespace is http://www.w3.org/2000/svg" do
+      its "namespace" do
         root["xmlns"].should eq "http://www.w3.org/2000/svg"
       end
 
-      its "version is 1.1" do
+      its "version" do
         root["version"].should eq "1.1"
       end
     end
