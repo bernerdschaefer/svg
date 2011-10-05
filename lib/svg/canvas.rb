@@ -1,6 +1,18 @@
 module SVG
   class Canvas
 
+    # @return [String, nil] the SVG canvas width or nil
+    def width
+      root["width"]
+    end
+
+    # Sets the SVG canvas width
+    #
+    # @param width the SVG canvas width
+    def width=(width)
+      root["width"] = width.to_s
+    end
+
     # @return [XML::Document] the raw XML document for this canvas
     def raw
       @raw ||= XML::Document.new.tap do |document|
