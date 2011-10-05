@@ -28,6 +28,7 @@ module SVG
       def curve_to(x1, y1, x2, y2, x, y)
         append_path_data "c", x1, y1, x2, y2, x, y
       end
+      alias c curve_to
 
       # Draws a cubic Bézier curve from the current point to (x,y) using
       # (x1,y1) as the control point at the beginning of the curve and (x2,y2)
@@ -45,6 +46,7 @@ module SVG
       def curve_to!(x1, y1, x2, y2, x, y)
         append_path_data "C", x1, y1, x2, y2, x, y
       end
+      alias C curve_to!
 
       # Draws a line from the current point to the given relative (x,y)
       # coordinate which becomes the new current point. Equivalent to "L".
@@ -54,6 +56,7 @@ module SVG
       def line_to(x, y)
         append_path_data "l", x, y
       end
+      alias l line_to
 
       # Draws a line from the current point to the given absolute (x,y)
       # coordinate which becomes the new current point. Equivalent to "L".
@@ -63,6 +66,7 @@ module SVG
       def line_to!(x, y)
         append_path_data "L", x, y
       end
+      alias L line_to!
 
       # Starts a new sub-path at the given relative (x,y) coordinate.
       # Equivalent to "M".
@@ -72,6 +76,7 @@ module SVG
       def move_to(x, y)
         append_path_data "m", x, y
       end
+      alias m move_to
 
       # Starts a new sub-path at the given absolute (x,y) coordinate.
       # Equivalent to "M".
@@ -81,6 +86,7 @@ module SVG
       def move_to!(x, y)
         append_path_data "M", x, y
       end
+      alias M move_to!
 
       private
 

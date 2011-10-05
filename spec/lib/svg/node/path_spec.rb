@@ -18,45 +18,57 @@ describe SVG::Node::Path do
     end
   end
 
-  describe "#curve_to" do
-    it "appends the path data" do
-      path.should_receive(:append_path_data).with("c", 1, 2, 3, 4, 5, 6)
-      path.curve_to 1, 2, 3, 4, 5, 6
+  %w(curve_to c).each do |curve_command|
+    describe "##{curve_command}" do
+      it "appends the path data" do
+        path.should_receive(:append_path_data).with("c", 1, 2, 3, 4, 5, 6)
+        path.send curve_command, 1, 2, 3, 4, 5, 6
+      end
     end
   end
 
-  describe "#curve_to!" do
-    it "appends the path data" do
-      path.should_receive(:append_path_data).with("C", 1, 2, 3, 4, 5, 6)
-      path.curve_to! 1, 2, 3, 4, 5, 6
+  %w(curve_to! C).each do |curve_command|
+    describe "##{curve_command}" do
+      it "appends the path data" do
+        path.should_receive(:append_path_data).with("C", 1, 2, 3, 4, 5, 6)
+        path.send curve_command, 1, 2, 3, 4, 5, 6
+      end
     end
   end
 
-  describe "#line_to" do
-    it "appends the path data" do
-      path.should_receive(:append_path_data).with("l", 10, 10)
-      path.line_to 10, 10
+  %w(line_to l).each do |line_command|
+    describe "##{line_command}" do
+      it "appends the path data" do
+        path.should_receive(:append_path_data).with("l", 10, 10)
+        path.send line_command, 10, 10
+      end
     end
   end
 
-  describe "#line_to!" do
-    it "appends the path data" do
-      path.should_receive(:append_path_data).with("L", 10, 10)
-      path.line_to! 10, 10
+  %w(line_to! L).each do |line_command|
+    describe "##{line_command}" do
+      it "appends the path data" do
+        path.should_receive(:append_path_data).with("L", 10, 10)
+        path.send line_command, 10, 10
+      end
     end
   end
 
-  describe "#move_to" do
-    it "appends the path data" do
-      path.should_receive(:append_path_data).with("m", 10, 10)
-      path.move_to 10, 10
+  %w(move_to m).each do |move_command|
+    describe "##{move_command}" do
+      it "appends the path data" do
+        path.should_receive(:append_path_data).with("m", 10, 10)
+        path.send move_command, 10, 10
+      end
     end
   end
 
-  describe "#move_to!" do
-    it "appends the path data" do
-      path.should_receive(:append_path_data).with("M", 10, 10)
-      path.move_to! 10, 10
+  %w(move_to! M).each do |move_command|
+    describe "##{move_command}" do
+      it "appends the path data" do
+        path.should_receive(:append_path_data).with("M", 10, 10)
+        path.send move_command, 10, 10
+      end
     end
   end
 
