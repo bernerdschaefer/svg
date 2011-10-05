@@ -12,13 +12,47 @@ module SVG
         append_path_data "Z"
       end
 
+      # Draws a cubic Bézier curve from the current point to (x,y) using
+      # (x1,y1) as the control point at the beginning of the curve and (x2,y2)
+      # as the control point at the end of the curve. All coordinates are
+      # relative.
+      #
+      # Equivalent to "c".
+      #
+      # @param x1 the x-axis starting control point
+      # @param y1 the y-axis starting control point
+      # @param x2 the x-axis ending control point
+      # @param y2 the y-axis ending control point
+      # @param x  the x-axis starting point
+      # @param y  the y-axis starting point
+      def curve_to(x1, y1, x2, y2, x, y)
+        append_path_data "c", x1, y1, x2, y2, x, y
+      end
+
+      # Draws a cubic Bézier curve from the current point to (x,y) using
+      # (x1,y1) as the control point at the beginning of the curve and (x2,y2)
+      # as the control point at the end of the curve. All coordinates are
+      # absolute.
+      #
+      # Equivalent to "C".
+      #
+      # @param x1 the x-axis starting control point
+      # @param y1 the y-axis starting control point
+      # @param x2 the x-axis ending control point
+      # @param y2 the y-axis ending control point
+      # @param x  the x-axis starting point
+      # @param y  the y-axis starting point
+      def curve_to!(x1, y1, x2, y2, x, y)
+        append_path_data "C", x1, y1, x2, y2, x, y
+      end
+
       # Draws a line from the current point to the given relative (x,y)
       # coordinate which becomes the new current point. Equivalent to "L".
       #
       # @param x the x coordinate to move to
       # @param y the y coordinate to move to
       def line_to(x, y)
-        append_path_data "l #{x} #{y}"
+        append_path_data "l", x, y
       end
 
       # Draws a line from the current point to the given absolute (x,y)
@@ -27,7 +61,7 @@ module SVG
       # @param x the x coordinate to draw to
       # @param y the y coordinate to draw to
       def line_to!(x, y)
-        append_path_data "L #{x} #{y}"
+        append_path_data "L", x, y
       end
 
       # Starts a new sub-path at the given relative (x,y) coordinate.
@@ -36,7 +70,7 @@ module SVG
       # @param x the x coordinate to move to
       # @param y the y coordinate to move to
       def move_to(x, y)
-        append_path_data "m #{x} #{y}"
+        append_path_data "m", x, y
       end
 
       # Starts a new sub-path at the given absolute (x,y) coordinate.
@@ -45,12 +79,12 @@ module SVG
       # @param x the x coordinate to move to
       # @param y the y coordinate to move to
       def move_to!(x, y)
-        append_path_data "M #{x} #{y}"
+        append_path_data "M", x, y
       end
 
       private
 
-      def append_path_data(data)
+      def append_path_data(*data)
         self["d"] = [self["d"], data].join(" ").strip
       end
 
