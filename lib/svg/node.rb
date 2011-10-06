@@ -9,7 +9,16 @@ module SVG
       @current_transformation ||= SVG::Transform.new
     end
 
-    # Scales the canvas based on the provided x and y scale factors.
+    # Sets the value of an attribute, ensuring that both the key and the value
+    # have been converted to strings.
+    #
+    # @param [Symbol, String] attribute the attribute's name
+    # @param value the attribute's value - must respond to #to_s
+    def []=(attribute, value)
+      super attribute.to_s, value.to_s
+    end
+
+    # Scales the node based on the provided x and y scale factors.
     #
     # See: http://www.w3.org/TR/SVG/coords.html#TransformAttribute
     #
@@ -20,7 +29,7 @@ module SVG
       self["transform"] = current_transformation.to_s
     end
 
-    # Translates the document based on the provided x and y positions.
+    # Translates the node based on the provided x and y positions.
     #
     # See: http://www.w3.org/TR/SVG/coords.html#TransformAttribute
     #

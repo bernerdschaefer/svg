@@ -4,6 +4,52 @@ describe SVG::Node do
 
   let(:node) { SVG::Node.new "svg" }
 
+  describe "[]" do
+    context "with string key" do
+      it "returns the attribute value" do
+        node["fill"] = "#FF0000"
+        node["fill"].should eq "#FF0000"
+      end
+    end
+
+    context "with symbol key" do
+      it "returns the attribute value" do
+        node["fill"] = "#FF0000"
+        node[:fill].should eq "#FF0000"
+      end
+    end
+  end
+
+  describe "[]=" do
+    context "with string key" do
+      it "sets the attribute value" do
+        node["fill"] = "#FF0000"
+        node["fill"].should eq "#FF0000"
+      end
+    end
+
+    context "with symbol key" do
+      it "sets the attribute value" do
+        node[:fill] = "#FF0000"
+        node[:fill].should eq "#FF0000"
+      end
+    end
+
+    context "with a string value" do
+      it "sets the attribute value" do
+        node[:fill] = "#FF0000"
+        node[:fill].should eq "#FF0000"
+      end
+    end
+
+    context "with a numeric value" do
+      it "sets the attribute value" do
+        node[:width] = 10
+        node[:width].should eq "10"
+      end
+    end
+  end
+
   describe "#current_transformation" do
     it "returns a SVG::Transform object" do
       node.current_transformation.should be_an_instance_of(SVG::Transform)
