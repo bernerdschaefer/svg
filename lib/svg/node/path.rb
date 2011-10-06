@@ -2,8 +2,12 @@ module SVG
   class Node
     class Path < Node
 
-      def initialize
-        super "path"
+      # Creates a new path node.
+      #
+      # @param [Hash] properties a hash of properties to set on the node
+      # @yield [SVG::Node::Path] the path node
+      def initialize(properties = {}, &block)
+        super "path", properties, &block
       end
 
       # Closes the current subpath by drawing a straight line from the current
