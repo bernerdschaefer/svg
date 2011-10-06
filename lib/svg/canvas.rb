@@ -6,12 +6,11 @@ module SVG
     def initialize(width, height)
       super()
 
-      self.root = SVG::Node.new("svg").tap do |svg|
-        svg["version"] = "1.1"
-        svg["xmlns"] = "http://www.w3.org/2000/svg"
-        svg["width"] = width
-        svg["height"] = height
-      end
+      self.root = SVG::Node.new "svg",
+        version: "1.1",
+        xmlns: "http://www.w3.org/2000/svg",
+        width: width,
+        height: height
     end
 
     # Creates a new graphics (`g`) node.
