@@ -27,12 +27,18 @@ module SVG
       end
     end
 
-    def [](attribute)
-      root[attribute]
+    # @param property the property to return
+    # @return [String] the value of the property on the root node
+    def [](property)
+      root[property]
     end
 
-    def []=(attribute, value)
-      root[attribute] = value
+    # Sets the value of the given property on the root node.
+    #
+    # @param property the property to set
+    # @param value the value to set the property to
+    def []=(property, value)
+      root[property] = value
     end
 
   end
