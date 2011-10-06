@@ -85,4 +85,46 @@ describe SVG::NodeHelpers do
       end
     end
   end
+
+  describe "#rect" do
+    context "with no arguments" do
+      let!(:rect) { canvas.rect }
+
+      it "returns a new rect node" do
+        rect.should be_an_instance_of SVG::Node
+      end
+
+      it "adds the node to self" do
+        canvas.children.should include rect
+      end
+    end
+
+    context "with a properties hash" do
+      let(:rect) { canvas.rect fill: "none" }
+
+      it "returns a new rect node" do
+        rect.should be_an_instance_of SVG::Node
+      end
+
+      it "sets the properties on the rect node" do
+        rect[:fill].should eq "none"
+      end
+    end
+
+    context "with a properties hash" do
+      let(:rect) do
+        canvas.rect do |rect|
+          rect["fill"] = "none"
+        end
+      end
+
+      it "returns a new rect node" do
+        rect.should be_an_instance_of SVG::Node
+      end
+
+      it "yields the rect node" do
+        rect[:fill].should eq "none"
+      end
+    end
+  end
 end
