@@ -4,6 +4,40 @@ describe SVG::Node do
 
   let(:node) { SVG::Node.new "svg" }
 
+  describe "initialize" do
+    context "with only a name" do
+      it "returns a node with that name" do
+        SVG::Node.new("svg").name.should eq "svg"
+      end
+    end
+
+    context "with a name and properties hash" do
+      let(:node) do
+        SVG::Node.new("svg", width: 100)
+      end
+
+      it "returns a node with that name" do
+        node.name.should eq "svg"
+      end
+
+      it "sets the properties provided" do
+        node["width"].should eq "100"
+      end
+    end
+
+    context "with a block provided" do
+      let(:node) do
+        SVG::Node.new "svg" do |node|
+          node["width"] = 100
+        end
+      end
+
+      it "yields the node to the block" do
+        node["width"].should eq "100"
+      end
+    end
+  end
+
   describe "[]" do
     context "with string key" do
       it "returns the attribute value" do

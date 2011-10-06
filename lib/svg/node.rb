@@ -2,7 +2,35 @@ module SVG
 
   # Wrapper class around XML::Node, defining the base SVG methods available to
   # all nodes, such as #scale and #transform.
+  #
+  # @example
+  #   SVG::Node.new "svg"
+  #
+  # @example
+  #   SVG::Node.new "svg", width: 100
+  #
+  # @example
+  #   SVG::Node.new "path" do |path|
+  #     path.scale 1, -1
+  #     path["width"] = 100
+  #   end
+  #
   class Node < XML::Node
+
+    # Creates a new instance of an SVG node with the given name.
+    #
+    # @param [String] name the name for this node
+    # @param [Hash] properties a hash of properties to set on the node
+    # @yield [SVG::Node] the newly created node
+    def initialize(name, properties = {})
+      super name
+
+      properties.each do |property, value|
+        self[property] = value
+      end
+
+      yield self if block_given?
+    end
 
     # @return [SVG::Transform] the current transformation object
     def current_transformation
