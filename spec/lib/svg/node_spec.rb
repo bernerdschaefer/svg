@@ -86,6 +86,14 @@ describe SVG::Node do
         node[:width].should eq "10"
       end
     end
+
+    context "with a node" do
+      it "sets the attribute's value an IRI reference to the node" do
+        other = SVG::Node.new "clipPath", id: "clip_1"
+        node["clip-path"] = other
+        node["clip-path"].should eq "url(#clip_1)"
+      end
+    end
   end
 
   describe "#current_transformation" do

@@ -42,9 +42,15 @@ module SVG
     # have been converted to strings.
     #
     # @param [Symbol, String] attribute the attribute's name
-    # @param value the attribute's value - must respond to #to_s
+    # @param [SVG::Node, #to_s] value a node with an id to be turned into a reference, or an object responding to #to_s.
     def []=(attribute, value)
-      super attribute.to_s, value.to_s
+      case value
+        when SVG::Node
+          super attribute.to_s, "url(##{value[:id]})"
+
+        else
+          super attribute.to_s, value.to_s
+      end
     end
 
     # Scales the node based on the provided x and y scale factors.
