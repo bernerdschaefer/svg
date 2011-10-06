@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.version     = "0.1"
   s.authors     = ["Bernerd Schaefer"]
   s.email       = ["bj.schaefer@gmail.com"]
-  s.homepage    = ""
-  s.summary     = ""
+  s.homepage    = "https://github.com/bernerdschaefer/svg"
+  s.summary     = "A ruby library for generating SVG built on libxml-ruby"
   s.description = s.summary
 
   s.add_dependency "libxml-ruby"
