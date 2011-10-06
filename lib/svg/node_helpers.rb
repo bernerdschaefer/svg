@@ -1,6 +1,19 @@
 module SVG
   module NodeHelpers
 
+    # Creates a new clipPath node.
+    #
+    # @param [Hash] properties a hash of properties to set on the clipPath node
+    # @yield [SVG::Node] the clipPath node
+    # @return [SVG::Node] the clipPath node
+    def clip_path(properties = {})
+      SVG::Node.new "clipPath", properties do |clip_path|
+        self << clip_path
+
+        yield clip_path if block_given?
+      end
+    end
+
     # Creates a new graphics (`g`) node.
     #
     # @param [Hash] properties a hash of properties to set on the graphics node
