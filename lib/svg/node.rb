@@ -16,6 +16,11 @@ module SVG
   #   end
   #
   class Node < XML::Node
+
+    # We need to alias the path method from XML::Node before including the
+    # NodeHelpers module, which defines the SVG `path` method.
+    alias _path path
+
     include NodeHelpers
 
     # Creates a new instance of an SVG node with the given name.
@@ -73,6 +78,11 @@ module SVG
     def translate(x, y = 0)
       current_transformation.translate(x, y)
       self["transform"] = current_transformation.to_s
+    end
+
+    # @return [String] the xpath to the current node
+    def xpath
+      _path
     end
 
   end

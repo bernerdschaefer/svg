@@ -42,6 +42,12 @@ describe SVG::Node do
     end
   end
 
+  describe "#xpath" do
+    it "returns the xpath to the current node" do
+      node.xpath.should eq "/svg"
+    end
+  end
+
   describe "[]" do
     context "with string key" do
       it "returns the attribute value" do
