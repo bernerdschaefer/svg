@@ -14,5 +14,18 @@ module SVG
       end
     end
 
+    # Creates a new path node.
+    #
+    # @param [Hash] properties a hash of properties to set on the path node
+    # @yield [SVG::Node] the path node
+    # @return [SVG::Node] the path node
+    def path(properties = {})
+      SVG::Node::Path.new properties do |path|
+        self << path
+
+        yield path if block_given?
+      end
+    end
+
   end
 end
