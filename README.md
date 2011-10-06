@@ -13,9 +13,7 @@ This is a library for building SVG images in ruby, using `libxml-ruby`.
     end
     canvas.save "square.svg"
 
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
-  <rect x="10" y="10" width="80" height="80" fill="#ccc"/>
-</svg>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect x="10" y="10" width="80" height="80" fill="#ccc"/></svg>
 
 ### Drawing a star
 
@@ -37,8 +35,4 @@ This is a library for building SVG images in ruby, using `libxml-ruby`.
     end
     canvas.save "star.svg"
 
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="12cm" height="4cm" viewBox="0 0 1200 400">
-  <g fill="red">
-  <path d="M 250 75 L 323 301 L 131 161 L 369 161 L 177 301 Z"/>
-  </g>
-</svg>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="12cm" height="4cm" viewBox="0 0 1200 400"><g fill="red"><path d="M 250 75 L 323 301 L 131 161 L 369 161 L 177 301 Z"/></g></svg>
