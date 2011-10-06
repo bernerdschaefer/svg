@@ -21,10 +21,17 @@ module SVG
     # @return [SVG::Node] the graphics node
     def g(properties = {})
       SVG::Node.new("g", properties) do |g|
-        root << g
+        self << g
 
         yield g if block_given?
       end
+    end
+
+    # Adds the provided node to the root node.
+    #
+    # @param [SVG::Node] node the node to append
+    def <<(node)
+      root << node
     end
 
     # @param property the property to return

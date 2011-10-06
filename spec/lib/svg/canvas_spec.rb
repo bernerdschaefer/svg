@@ -34,6 +34,15 @@ describe SVG::Canvas do
     end
   end
 
+  describe "#<<" do
+    let(:node) { SVG::Node.new "g" }
+
+    it "delegates to the root node" do
+      root.should_receive(:<<).with(node)
+      canvas << node
+    end
+  end
+
   describe "#[]" do
     it "delegates to the root node" do
       root.should_receive(:[]).with("width")
