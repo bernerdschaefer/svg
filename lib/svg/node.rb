@@ -16,6 +16,7 @@ module SVG
   #   end
   #
   class Node < XML::Node
+    include NodeHelpers
 
     # Creates a new instance of an SVG node with the given name.
     #

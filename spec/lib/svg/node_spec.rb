@@ -4,6 +4,10 @@ describe SVG::Node do
 
   let(:node) { SVG::Node.new "svg" }
 
+  it "should include NodeHelpers" do
+    SVG::Node.ancestors.should include SVG::NodeHelpers
+  end
+
   describe "initialize" do
     context "with only a name" do
       it "returns a node with that name" do
