@@ -36,3 +36,16 @@ This is a library for building SVG images in ruby, using `libxml-ruby`.
     canvas.save "star.svg"
 
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="12cm" height="4cm" viewBox="0 0 1200 400"><g fill="red"><path d="M 250 75 L 323 301 L 131 161 L 369 161 L 177 301 Z"/></g></svg>
+
+### Drawing not (yet) supported shapes
+
+    canvas = SVG::Canvas.new 100, 100
+    canvas << SVG::Node.new("circle",
+      cx: 50,
+      cy: 50,
+      r: 30,
+      fill: 'blue'
+    )
+    canvas.save "circle.svg"
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="30" fill="blue"/></svg>
